@@ -22,15 +22,11 @@ class Wikipedia {
   }
 
   async assertArticlePageVisible() {
-    await browser.wait(
-      ExpectedConditions.visibilityOf(this.getArticleHeader()),
-      10000
-    );
+    await browser.wait(ExpectedConditions.urlContains("wiki"), 10000);
   }
 
   async assertDisplayedArticle(expectedTitle: string) {
-    const headerElement = this.getArticleHeader();
-    const title = await headerElement.getText();
+    const title = (await this.getArticleHeader()).getText();
     await expect(title).toBe(expectedTitle);
   }
 }
@@ -47,12 +43,11 @@ useCase("Minimal use case")
         await wikipedia.assertSearchIsVisible();
         await step("scenario start");
         await wikipedia.getSearchBox().sendKeys("Kangaroo");
-        await stepWithKeyboardAnnotation("search", wikipedia.getSearchBox());
+        await stepWithKeyboardAnnotation("search", wikipedia.getSearchBox()); // see the comment inside this function
         await browser
           .actions()
           .sendKeys(Key.ENTER)
           .perform();
-
         await wikipedia.assertArticlePageVisible();
         await wikipedia.assertDisplayedArticle("Kangaroo");
       });
