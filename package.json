@@ -1,0 +1,19 @@
+{
+  "name": "minimal-example",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "setup": "webdriver-manager",
+    "test": "protractor protractor.conf.js"
+  },
+  "author": "1plusX",
+  "dependencies": {
+    "@types/jasmine": "^3.3.9",
+    "protractor": "^5.4.2",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7",
+    "scenarioo-js": "^3.0.2",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.3.3"
+  }
+}
